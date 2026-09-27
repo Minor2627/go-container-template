@@ -7,11 +7,11 @@ import (
 	"inholland.nl/go-container-template/internal/config"
 )
 
-const DEFAULT_ADDR string = ":8080"
+const DefaultAddr string = ":8080"
 
 func main() {
-	config := config.NewEnvConfigProvider()
-	addr := config.GetConfig("ADDR", DEFAULT_ADDR)
+	cfg := config.NewEnvConfigProvider()
+	addr := cfg.GetConfig("ADDR", DefaultAddr)
 
 	slog.Info("Starting HTTP server", "addr", addr)
 	if err := http.ListenAndServe(addr, nil); err != nil {
